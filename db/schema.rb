@@ -10,10 +10,70 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180205021141) do
+ActiveRecord::Schema.define(version: 20180205180638) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "clocks", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "description"
+    t.integer "segments", null: false
+    t.integer "ticks", null: false
+    t.bigint "faction_id"
+    t.bigint "npc_id"
+    t.bigint "game_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["faction_id"], name: "index_clocks_on_faction_id"
+    t.index ["game_id"], name: "index_clocks_on_game_id"
+    t.index ["npc_id"], name: "index_clocks_on_npc_id"
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.text "body", null: false
+    t.bigint "game_id"
+    t.bigint "clock_id"
+    t.bigint "npc_id"
+    t.bigint "faction_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["clock_id"], name: "index_comments_on_clock_id"
+    t.index ["faction_id"], name: "index_comments_on_faction_id"
+    t.index ["game_id"], name: "index_comments_on_game_id"
+    t.index ["npc_id"], name: "index_comments_on_npc_id"
+  end
+
+  create_table "factions", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "description"
+    t.integer "faction_status", default: 0
+    t.bigint "game_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["game_id"], name: "index_factions_on_game_id"
+  end
+
+  create_table "games", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "description"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_games_on_user_id"
+  end
+
+  create_table "npcs", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "description"
+    t.string "picture"
+    t.bigint "game_id"
+    t.bigint "faction_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["faction_id"], name: "index_npcs_on_faction_id"
+    t.index ["game_id"], name: "index_npcs_on_game_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
