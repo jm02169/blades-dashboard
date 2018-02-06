@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 20180205180638) do
     t.string "name", null: false
     t.text "description"
     t.integer "segments", null: false
-    t.integer "ticks", null: false
+    t.integer "ticks", default: 0
     t.bigint "faction_id"
     t.bigint "npc_id"
     t.bigint "game_id"

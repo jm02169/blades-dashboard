@@ -4,7 +4,7 @@ class CreateClocks < ActiveRecord::Migration[5.1]
       t.string :name, null:false
       t.text :description
       t.integer :segments, null: false
-      t.integer :ticks, null: false
+      t.integer :ticks, default: 0
 
       t.belongs_to :faction
       t.belongs_to :npc
