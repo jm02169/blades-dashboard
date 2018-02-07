@@ -19,4 +19,19 @@ RSpec.describe Api::V1::GamesController, type: :controller do
 
     end
   end
+
+  describe "GET#show" do
+    it "should return the details for a particular game" do
+      get :index, params: {id: game.id}
+      returned_json = JSON.parse(response.body)
+
+      expect(response.status).to eq 200
+      expect(response.content_type).to eq("application/json")
+
+      expect(returned_json[0]["id"]).to eq game.id
+      expect(returned_json[0]["description"]).to eq game.description
+      expect(returned_json[0]["factions"]).to be_a_kind_of(Array)
+
+    end
+  end
 end
