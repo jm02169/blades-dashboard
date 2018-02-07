@@ -15,7 +15,7 @@ RSpec.describe Api::V1::GamesController, type: :controller do
 
       expect(returned_json.length).to eq 1
       expect(returned_json[0]["name"]).to eq "Game One"
-      expect(returned_json[0]["description"]).to eq "Description"
+      expect(returned_json[0]["description"]).to eq "Test game"
 
     end
   end
