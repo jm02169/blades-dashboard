@@ -28,6 +28,5 @@ if !Clock.first
     Clock.create!(name: faction.name + " has a clock for something", description: faction.name + 'is planning to do stuff and this clock measures the progress', faction: faction, game: faction.game, segments: Faker::Number.between(8,12), ticks: Faker::Number.between(0,7))
     Clock.create!(name: npc.name + " has a clock for something", description: npc.name + " has a clock that measure the progress of something", game: npc.game, npc: npc, segments: Faker::Number.between(8,12), ticks: Faker::Number.between(0,7))
     Clock.create!(name: "General clock", description: "This is a general clock not attached to an NPC or faction", game: faction.game, segments: Faker::Number.between(8,12), ticks: Faker::Number.between(0,7))
-
   end
 end

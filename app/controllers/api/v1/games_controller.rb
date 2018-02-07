@@ -3,7 +3,12 @@ class Api::V1::GamesController < ApplicationController
 
   def index
     games = Game.all
-    render json: games, include: [:comments, :factions, :npcs]
+    render json: games, include: [:comments, :factions, :npcs, :clocks]
+  end
+
+  def show
+    game = Game.find(params[:id])
+    render json: game, include: [:comments, :factions, :npcs, :clocks]
   end
 
 end
