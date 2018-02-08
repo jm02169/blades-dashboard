@@ -4,6 +4,7 @@ import { Router, browserHistory, Route, IndexRoute } from 'react-router';
 import GamesIndexContainer from './containers/GamesIndexContainer'
 import GameHomePageContainer from './containers/GameHomePageContainer'
 import ClocksIndexContainer from './containers/ClocksIndexContainer'
+import ClockShowContainer from './containers/ClockShowContainer'
 
 
 const App = (props) => {
@@ -22,6 +23,7 @@ const App = (props) => {
           <Route path='/games' component={(props) => <GamesIndexContainer currentUserId={currentUserId} {...props} />} />
           <Route path='/games/:id' component={(props) => <GameHomePageContainer currentUserId={currentUserId} {...props} />} />
           <Route path='/games/:id/clocks' component={(props) => <ClocksIndexContainer currentUserId={currentUserId} {...props} />} />
+          <Route path='/clocks/:id' component={(props) => <ClockShowContainer currentUserId={currentUserId} {...props} />} />
         </Route>
     </Router>
     )

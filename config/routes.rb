@@ -5,11 +5,13 @@ Rails.application.routes.draw do
   resources :games, only: [:index, :show] do
     resources :clocks, only: [:index, :show]
   end
+  resources :clocks, only: [:show]
   namespace :api do
     namespace :v1 do
       resources :games, only: [:index, :show] do
-        resources :clocks, only: [:index]
+        resources :clocks, only: [:index, :show]
       end
+      resources :clocks, only: [:show]
     end
   end
 end
