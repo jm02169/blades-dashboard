@@ -15,3 +15,8 @@
  *= require foundation_and_overrides
 
  */
+
+.clock-name {
+  font-size: 1.25em;
+  font-weight: bolder;
+}
