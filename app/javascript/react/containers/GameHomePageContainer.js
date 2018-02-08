@@ -8,10 +8,6 @@ class GameHomePageContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      npcs: [],
-      factions: [],
-      clocks: [],
-      comments: [],
       game: []
     }
   }
@@ -29,11 +25,7 @@ class GameHomePageContainer extends Component {
     .then(response =>response.json())
     .then(body => {
       this.setState({
-        game: body,
-        npcs: body.npcs,
-        factions: body.factions,
-        clocks: body.clocks,
-        comments: body.comments
+        game: body
       })
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`));
@@ -46,16 +38,16 @@ class GameHomePageContainer extends Component {
         <h1 className = "small-8 small-centered columns">{this.state.game.name}</h1>
         <div className = "small-block-grid-3">
           <li><ClockTile
-            clocks = {this.state.clocks}
+            id = {this.state.game.id}
           /></li>
           <li><FactionTile
-            factions = {this.state.factions}
+            id = {this.state.game.id}
           /></li>
           <li><NpcTile
-            npcs = {this.state.npcs}
+            id = {this.state.game.id}
           /></li>
           <li><CommentTile
-            comments = {this.state.comments}
+            id = {this.state.game.id}
           /></li>
 
         </div>
