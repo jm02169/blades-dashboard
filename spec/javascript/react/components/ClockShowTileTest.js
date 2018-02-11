@@ -1,6 +1,6 @@
 import ClockShowTile from '../../../../app/javascript/react/components/ClockShowTile.js'
 
-describe('GameTile', () => {
+describe('ClockShowTile', () => {
   let wrapper;
 
   beforeEach(() => {

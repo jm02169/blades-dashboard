@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router'
 import ClockShowTile from '../components/ClockShowTile'
 
 class ClockShowContainer extends Component {
@@ -40,6 +41,7 @@ class ClockShowContainer extends Component {
         <h1 className = "small-8 small-centered columns">{this.state.clock.name}</h1>
         <div className = "panel small-10 small-centered columns"> <p>{this.state.clock.description}</p></div>
         <div className = {npcOrFactionClass}>{this.state.clock.npc_name}{this.state.clock.faction_name}</div>
+        <Link to={"/games/"+this.state.clock.game_id+"/clocks"} className = "button small-12 small-centered columns">Back to Clock List</Link>
       </div>
     )
   }
