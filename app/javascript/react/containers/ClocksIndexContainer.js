@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import ClockShowTile from '../components/ClockShowTile'
+import { Link } from 'react-router'
 
 class ClocksIndexContainer extends Component {
   constructor(props) {
@@ -9,7 +10,6 @@ class ClocksIndexContainer extends Component {
     }
   }
   componentDidMount() {
-    console.log(this.props.location.pathname)
     fetch(`/api/v1/${this.props.location.pathname}`)
     .then(response => {
       if (response.ok) {
@@ -30,7 +30,6 @@ class ClocksIndexContainer extends Component {
   }
 
   render() {
-
     let clockShowTiles = this.state.clocks.map(clock => {
       return (
         <li>
@@ -48,15 +47,16 @@ class ClocksIndexContainer extends Component {
           />
         </li>
       )
-
     })
 
     return(
       <div className = "row">
-      <h1>Clocks</h1>
-      <ul className = "no-bullet">
-        {clockShowTiles}
-      </ul>
+        <h1 className = "small-2 small-centered columns">Clocks</h1>
+        <ul className = "no-bullet">
+          <Link to={this.props.location.pathname+"/new"}className = "button small-12 small-centered columns">Add a new clock</Link>
+          {clockShowTiles}
+          <Link to={"/games/"+this.props.params.id}className = "button small-12 small-centered columns">Back to Game</Link>
+        </ul>
       </div>
     )
   }

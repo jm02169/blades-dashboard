@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router'
 import ClockTile from '../components/ClockTile'
 import FactionTile from '../components/FactionTile'
 import CommentTile from '../components/CommentTile'
@@ -51,6 +52,7 @@ class GameHomePageContainer extends Component {
           /></li>
 
         </div>
+        <Link to="/games" className = "button small-12 small-centered columns">Back to Games List</Link>
       </div>
     )
   }
