@@ -35,10 +35,13 @@ class ClockShowContainer extends Component {
     if (this.state.clock.npc_name != null || this.state.clock.faction_name != null) {
       npcOrFactionClass = "panel small-10 small-centered columns"
     }
-
     return(
       <div className = "row">
         <h1 className = "small-8 small-centered columns">{this.state.clock.name}</h1>
+        <span className = "small-2 small-centered columns"><i className="fas fa-plus fa-lg"></i>
+        {this.state.clock.ticks}/{this.state.clock.segments}
+        <i className="fas fa-minus fa-lg"></i>
+        </span>
         <div className = "panel small-10 small-centered columns"> <p>{this.state.clock.description}</p></div>
         <div className = {npcOrFactionClass}>{this.state.clock.npc_name}{this.state.clock.faction_name}</div>
         <Link to={"/games/"+this.state.clock.game_id+"/clocks"} className = "button small-12 small-centered columns">Back to Clock List</Link>

@@ -53,7 +53,6 @@ class NewClockFormContainer extends Component {
 
   handleFormSubmit(event) {
     event.preventDefault()
-
     let formPayload = {
       name: this.state.name,
       description: this.state.description,
@@ -122,8 +121,6 @@ class NewClockFormContainer extends Component {
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
-
-
 
   render() {
     let errorHTML
