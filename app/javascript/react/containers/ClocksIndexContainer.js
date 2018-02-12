@@ -8,9 +8,36 @@ class ClocksIndexContainer extends Component {
     this.state = {
       clocks: []
     }
+    this.handlePlusOrMinusClick = this.handlePlusOrMinusClick.bind(this)
+    this.fetchClocks = this.fetchClocks.bind(this)
   }
-  componentDidMount() {
-    fetch(`/api/v1/${this.props.location.pathname}`)
+
+  handlePlusOrMinusClick(clockId, newTicks) {
+    let formPayload = {ticks: newTicks}
+    fetch(`/api/v1/clocks/${clockId}`, {
+      credentials: 'same-origin',
+      method: 'PUT',
+      body: JSON.stringify(formPayload),
+      headers: { 'Content-Type': 'application/json' }
+    })
+    .then(response => {
+      if (response.ok) {
+        return response;
+      } else {
+        let errorMessage = `${response.status} (${response.statusText})`
+        let error = new Error(errorMessage);
+        throw(error);
+      }
+    })
+    .then(response => response.json())
+    .then(response => {
+      this.setState({ clocks: response })
+    })
+    .catch(error => console.error(`Error in fetch: ${error.message}`));
+  }
+
+  fetchClocks() {
+    fetch(`/api/v1${this.props.location.pathname}`)
     .then(response => {
       if (response.ok) {
         return response;
@@ -28,6 +55,9 @@ class ClocksIndexContainer extends Component {
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
+  componentDidMount() {
+    this.fetchClocks()
+  }
 
   render() {
     let clockShowTiles = this.state.clocks.map(clock => {
@@ -44,6 +74,7 @@ class ClocksIndexContainer extends Component {
           npcName = {clock.npc_name}
           factionId = {clock.faction_id}
           npcId = {clock.npc_id}
+          handleClick = {this.handlePlusOrMinusClick}
           />
         </li>
       )
@@ -53,9 +84,9 @@ class ClocksIndexContainer extends Component {
       <div className = "row">
         <h1 className = "small-2 small-centered columns">Clocks</h1>
         <ul className = "no-bullet">
-          <Link to={this.props.location.pathname+"/new"}className = "button small-12 small-centered columns">Add a new clock</Link>
+          <Link to={this.props.location.pathname+"/new"} className = "button small-12 small-centered columns">Add a new clock</Link>
           {clockShowTiles}
-          <Link to={"/games/"+this.props.params.id}className = "button small-12 small-centered columns">Back to Game</Link>
+          <Link to={"/games/"+this.props.params.id} className = "button small-12 small-centered columns">Back to Game</Link>
         </ul>
       </div>
     )

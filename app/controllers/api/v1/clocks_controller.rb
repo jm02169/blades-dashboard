@@ -1,9 +1,10 @@
 class Api::V1::ClocksController < ApplicationController
-  skip_before_action :verify_authenticity_token, only: [:create]
+  skip_before_action :verify_authenticity_token, only: [:create, :update]
 
   def index
     game = Game.find(params[:game_id])
-    clocks = game.clocks
+    clocks = game.clocks.order(:id)
+
     render json: clocks, include: [:comments]
   end
 
@@ -15,7 +16,18 @@ class Api::V1::ClocksController < ApplicationController
   def create
     clock = Clock.new(clock_params)
     if clock.save
-      render json: { clock: clock}
+      render json: { clock: clock }
+    else
+      render json: {error: game.errors.full_messages}, status: :unprocessable_entity
+    end
+  end
+
+  def update
+    clock = Clock.find(params[:id])
+    game = clock.game
+    clocks = game.clocks.order(:id)
+    if clock.update(clock_params)
+      render json: clocks, each_serializer: ClockSerializer
     else
       render json: {error: game.errors.full_messages}, status: :unprocessable_entity
     end

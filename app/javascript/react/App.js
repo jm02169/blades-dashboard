@@ -6,6 +6,7 @@ import GameHomePageContainer from './containers/GameHomePageContainer'
 import ClocksIndexContainer from './containers/ClocksIndexContainer'
 import ClockShowContainer from './containers/ClockShowContainer'
 import NewClockFormContainer from './containers/NewClockFormContainer'
+import ClockEditContainer from './containers/ClockEditContainer'
 
 const App = (props) => {
 
@@ -25,6 +26,7 @@ const App = (props) => {
           <Route path='/games/:id/clocks' component={(props) => <ClocksIndexContainer currentUserId={currentUserId} {...props} />} />
           <Route path='/clocks/:id' component={(props) => <ClockShowContainer currentUserId={currentUserId} {...props} />} />
           <Route path='/games/:id/clocks/new' component={(props) => <NewClockFormContainer currentUserId={currentUserId} {...props} />} />
+          <Route path='/clocks/:id/edit' component={(props) => <ClockEditContainer currentUserId={currentUserId} {...props} />} />
         </Route>
     </Router>
     )
