@@ -8,7 +8,11 @@ class Api::V1::GamesController < ApplicationController
 
   def show
     game = Game.find(params[:id])
-    render json: game, include: [:comments, :factions, :npcs, :clocks]
+    if current_user_id = game.user.id
+      render json: game, include: [:comments, :factions, :npcs, :clocks]
+    else
+      render json: {}, status: :unauthorized
+    end
   end
 
 end

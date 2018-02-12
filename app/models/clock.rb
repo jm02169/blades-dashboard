@@ -8,4 +8,5 @@ class Clock < ApplicationRecord
   belongs_to :npc, optional: true
 
   has_many :comments
+
 end

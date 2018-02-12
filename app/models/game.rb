@@ -6,4 +6,8 @@ class Game < ApplicationRecord
   has_many :factions
   has_many :npcs
   has_many :clocks
+
+  # def viewable_by?(user)
+  #   game.user == user
+  # end
 end

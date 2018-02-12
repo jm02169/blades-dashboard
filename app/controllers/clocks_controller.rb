@@ -34,4 +34,14 @@ class ClocksController < ApplicationController
     end
     render "games/index"
   end
+
+  def edit
+    if current_user
+      @current_user_id = current_user.id
+    else
+      @current_user_id = 0
+    end
+    render "games/index"
+  end
+
 end

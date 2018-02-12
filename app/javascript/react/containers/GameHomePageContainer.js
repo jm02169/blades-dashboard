@@ -13,7 +13,7 @@ class GameHomePageContainer extends Component {
     }
   }
   componentDidMount() {
-    fetch(`/api/v1/${this.props.location.pathname}`)
+    fetch(`/api/v1${this.props.location.pathname}`)
     .then(response => {
       if (response.ok) {
         return response;
