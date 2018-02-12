@@ -18,7 +18,7 @@ class Api::V1::ClocksController < ApplicationController
     if clock.save
       render json: { clock: clock }
     else
-      render json: {error: game.errors.full_messages}, status: :unprocessable_entity
+      render json: {error: clock.errors.full_messages}, status: :unprocessable_entity
     end
   end
 

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router'
 import GameTile from '../components/GameTile'
 
 class GamesIndexContainer extends Component {
@@ -45,6 +46,10 @@ class GamesIndexContainer extends Component {
         <h1 className = "small-8 small-centered columns">Your games</h1>
         <div className = "small-block-grid-3">
           {gameTiles}
+          <li><div className = "panel">
+            <h2>Add New Game</h2>
+            <Link to="/games/new" className = "button">Add new game</Link>
+          </div></li>
         </div>
       </div>
     )
