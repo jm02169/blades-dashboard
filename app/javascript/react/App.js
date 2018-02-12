@@ -7,7 +7,6 @@ import ClocksIndexContainer from './containers/ClocksIndexContainer'
 import ClockShowContainer from './containers/ClockShowContainer'
 import NewClockFormContainer from './containers/NewClockFormContainer'
 
-
 const App = (props) => {
 
   let currentUserId=document.getElementById('app').dataset.currentUserId

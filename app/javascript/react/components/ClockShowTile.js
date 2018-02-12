@@ -8,7 +8,11 @@ const ClockShowTile = (props) => {
       <Link to={"/clocks/"+props.id} className="small-6 columns">{props.name}</Link>
 
         <div className = "small-4 columns"> {props.npcName}{props.factionName} </div>
-        <div className = "small-2 columns">{props.ticks}/{props.segments}</div>
+        <div className = "small-2 columns">
+          <i className="fas fa-plus"></i>
+           {props.ticks}/{props.segments}
+          <i className="fas fa-minus"></i>
+        </div>
       </span>
     </div>
   )

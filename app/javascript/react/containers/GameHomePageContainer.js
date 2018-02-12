@@ -50,7 +50,6 @@ class GameHomePageContainer extends Component {
           <li><CommentTile
             id = {this.state.game.id}
           /></li>
-
         </div>
         <Link to="/games" className = "button small-12 small-centered columns">Back to Games List</Link>
       </div>
