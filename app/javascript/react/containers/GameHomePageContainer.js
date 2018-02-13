@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router'
+import { Link, browserHistory } from 'react-router'
 import ClockTile from '../components/ClockTile'
 import FactionTile from '../components/FactionTile'
 import CommentTile from '../components/CommentTile'
@@ -19,6 +19,11 @@ class GameHomePageContainer extends Component {
     .then(response => {
       if (response.ok) {
         return response;
+      } else if (response.status === 401) {
+        let errorMessage = `${response.status} (${response.statusText})`
+        browserHistory.push('/')
+        let error = new Error(errorMessage);
+        throw(error);
       } else {
         let errorMessage = `${response.status} (${response.statusText})`
         let error = new Error(errorMessage);
@@ -38,7 +43,7 @@ class GameHomePageContainer extends Component {
 
     return(
       <div className = "row">
-        <h1 className = "small-8 small-centered columns">{this.state.game.name}</h1>
+        <h1 className = "small-4 small-centered columns">{this.state.game.name}</h1>
         <div className = "small-block-grid-3">
           <li><ClockTile
             id = {this.state.game.id}

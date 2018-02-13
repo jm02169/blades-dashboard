@@ -6,6 +6,10 @@ RSpec.describe Api::V1::ClocksController, type: :controller do
   let!(:faction) { Faction.create!(name: "The Bloodletters", description: "Gang of leviathan blood sellers", game: game)}
   let!(:clock) { Clock.create!(name: 'Clock One', description: "This describes clock one", segments: 6, ticks: 2, game: game, faction: faction)}
 
+  before :each do
+    login_with user
+  end
+
   describe "GET#index" do
     it "should return a list of clocks for a specific game" do
       get :index, params: {game_id: game.id}
@@ -23,7 +27,6 @@ RSpec.describe Api::V1::ClocksController, type: :controller do
       expect(returned_json[0]["faction_name"]).to eq clock.faction.name
       expect(returned_json[0]["faction_id"]).to eq clock.faction.id
       expect(returned_json[0]["npc_name"]).to eq nil
-
 
     end
   end

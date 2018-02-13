@@ -103,11 +103,18 @@ class ClockEditContainer extends Component {
   }
 
   componentDidMount() {
-    fetch(`/api/v1/clocks/${this.props.params.id}`)
+    fetch(`/api/v1/clocks/${this.props.params.id}`, {
+      credentials: 'same-origin'
+    })
     .then(response => {
       if (response.ok) {
         return response;
-      } else {
+      } else if (response.status === 401) {
+        let errorMessage = `${response.status} (${response.statusText})`
+        browserHistory.push('/')
+        let error = new Error(errorMessage);
+        throw(error);
+      }else {
         let errorMessage = `${response.status} (${response.statusText})`
         let error = new Error(errorMessage);
         throw(error);
@@ -126,7 +133,9 @@ class ClockEditContainer extends Component {
       })
     })
     .then(body => {
-      fetch(`/api/v1/games/${this.state.gameId}`)
+      fetch(`/api/v1/games/${this.state.gameId}`, {
+        credentials: 'same-origin'
+      })
       .then(response => {
         if (response.ok) {
           return response;

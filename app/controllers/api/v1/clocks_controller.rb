@@ -11,7 +11,11 @@ class Api::V1::ClocksController < ApplicationController
 
   def show
     clock = Clock.find(params[:id])
-    render json: clock, include: [:comments]
+    if clock.game.user_id == current_user_id
+      render json: clock, include: [:comments]
+    else
+      redirect_to "../public/401.html", status: :unauthorized
+    end
   end
 
   def create

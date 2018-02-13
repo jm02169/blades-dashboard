@@ -25,7 +25,6 @@ class GamesIndexContainer extends Component {
     })
     .then(response =>response.json())
     .then(body => {
-      console.log(body)
       this.setState({ games: body})
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`));
@@ -46,7 +45,7 @@ class GamesIndexContainer extends Component {
     })
     return(
       <div className = "row">
-        <h1 className = "small-8 small-centered columns">Your games</h1>
+        <h1 className = "small-4 small-centered columns">Your games</h1>
         <div className = "small-block-grid-3">
           {gameTiles}
           <li><div className = "panel">

@@ -102,7 +102,9 @@ class NewClockFormContainer extends Component {
   }
 
   componentDidMount() {
-    fetch(`/api/v1/games/${this.props.params.id}`)
+    fetch(`/api/v1/games/${this.props.params.id}`, {
+      credentials: 'same-origin'
+    })
     .then(response => {
       if (response.ok) {
         return response;

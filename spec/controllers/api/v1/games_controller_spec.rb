@@ -5,6 +5,10 @@ RSpec.describe Api::V1::GamesController, type: :controller do
   let!(:user) { User.create!(email: 'test@test.com', password: "qwerty", sign_in_count: 1) }
   let!(:game) { Game.create!(name: 'Game One', description: "Test game", user: user)}
 
+  before :each do
+    login_with user
+  end
+
   describe "GET#index" do
     it "should return a list of games" do
       get :index
