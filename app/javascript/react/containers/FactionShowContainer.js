@@ -131,14 +131,14 @@ class FactionShowContainer extends Component {
             <a href="#" onClick = {this.handleUpClick}>
               <i className="fas fa-plus fa-lg"></i>
             </a>
-            <span>{this.state.factionStatus}</span>
+            <span> {this.state.factionStatus} </span>
             <a href="#" onClick = {this.handleDownClick}>
               <i className="fas fa-minus fa-lg"></i>
             </a>
           </span>
         </div>
         <div className = "panel small-10 small-centered columns"> <p>{this.state.description}</p></div>
-        <ul className = "panel small-10 small-centered columns"> <lh>NPCs:</lh>
+        <ul className = "panel small-10 small-centered columns"> <h4>NPCs:</h4>
         <hr/>
           {npcList}
         </ul>
