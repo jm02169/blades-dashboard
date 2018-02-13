@@ -37,7 +37,9 @@ class ClocksIndexContainer extends Component {
   }
 
   fetchClocks() {
-    fetch(`/api/v1${this.props.location.pathname}`)
+    fetch(`/api/v1${this.props.location.pathname}`, {
+      credentials: 'same-origin'
+    })
     .then(response => {
       if (response.ok) {
         return response;

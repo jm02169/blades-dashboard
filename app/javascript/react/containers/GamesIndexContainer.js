@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router'
 import GameTile from '../components/GameTile'
 
 class GamesIndexContainer extends Component {
@@ -10,7 +11,9 @@ class GamesIndexContainer extends Component {
   }
 
   componentDidMount() {
-    fetch("/api/v1/games")
+    fetch("/api/v1/games", {
+      credentials: "same-origin"
+    })
     .then(response => {
       if (response.ok) {
         return response;
@@ -22,7 +25,7 @@ class GamesIndexContainer extends Component {
     })
     .then(response =>response.json())
     .then(body => {
-      this.setState( {games: body} )
+      this.setState({ games: body})
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
@@ -42,9 +45,13 @@ class GamesIndexContainer extends Component {
     })
     return(
       <div className = "row">
-        <h1 className = "small-8 small-centered columns">Your games</h1>
+        <h1 className = "small-4 small-centered columns">Your games</h1>
         <div className = "small-block-grid-3">
           {gameTiles}
+          <li><div className = "panel">
+            <h2>Add New Game</h2>
+            <Link to="/games/new" className = "button">Add new game</Link>
+          </div></li>
         </div>
       </div>
     )

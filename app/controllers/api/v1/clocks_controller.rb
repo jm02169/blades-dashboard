@@ -1,5 +1,6 @@
 class Api::V1::ClocksController < ApplicationController
   skip_before_action :verify_authenticity_token, only: [:create, :update]
+  before_action :authenticate_user!
 
   def index
     game = Game.find(params[:game_id])
@@ -10,7 +11,11 @@ class Api::V1::ClocksController < ApplicationController
 
   def show
     clock = Clock.find(params[:id])
-    render json: clock, include: [:comments]
+    if clock.game.user_id == current_user_id
+      render json: clock, include: [:comments]
+    else
+      redirect_to "../public/401.html", status: :unauthorized
+    end
   end
 
   def create
@@ -18,7 +23,7 @@ class Api::V1::ClocksController < ApplicationController
     if clock.save
       render json: { clock: clock }
     else
-      render json: {error: game.errors.full_messages}, status: :unprocessable_entity
+      render json: {error: clock.errors.full_messages}, status: :unprocessable_entity
     end
   end
 
