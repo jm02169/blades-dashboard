@@ -1,4 +1,4 @@
-class ClocksController < ApplicationController
+class FactionsController < ApplicationController
   def index
     render "games/index"
   end

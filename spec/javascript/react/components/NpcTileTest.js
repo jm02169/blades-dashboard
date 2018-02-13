@@ -1,11 +1,11 @@
-import ClockTile from '../../../../app/javascript/react/components/ClockTile.js'
+import NpcTile from '../../../../app/javascript/react/components/NpcTile.js'
 
-describe('ClockTile', () => {
+describe('NpcTile', () => {
   let wrapper;
 
   beforeEach(() => {
     wrapper = mount(
-      <ClockTile
+      <NpcTile
       key = '1'
       id = '1'
       />
@@ -17,6 +17,6 @@ describe('ClockTile', () => {
   })
 
   it('should have expected content in h3 tag', () => {
-    expect(wrapper.find('h3').text()).toBe('Clocks')
+    expect(wrapper.find('h3').text()).toBe('NPCs')
   })
 })

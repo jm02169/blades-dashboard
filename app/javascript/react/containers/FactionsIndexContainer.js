@@ -1,20 +1,20 @@
 import React, { Component } from 'react'
-import ClockShowTile from '../components/ClockShowTile'
+import FactionShowTile from '../components/FactionShowTile'
 import { Link, browserHistory } from 'react-router'
 
-class ClocksIndexContainer extends Component {
+class FactionsIndexContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      clocks: []
+      factions: []
     }
     this.handlePlusOrMinusClick = this.handlePlusOrMinusClick.bind(this)
-    this.fetchClocks = this.fetchClocks.bind(this)
+    this.fetchFactions = this.fetchFactions.bind(this)
   }
 
-  handlePlusOrMinusClick(clockId, newTicks) {
-    let formPayload = {ticks: newTicks}
-    fetch(`/api/v1/clocks/${clockId}`, {
+  handlePlusOrMinusClick(factionId, newStatus) {
+    let formPayload = {faction_status: newStatus}
+    fetch(`/api/v1/factions/${factionId}`, {
       credentials: 'same-origin',
       method: 'PUT',
       body: JSON.stringify(formPayload),
@@ -36,12 +36,12 @@ class ClocksIndexContainer extends Component {
     })
     .then(response => response.json())
     .then(response => {
-      this.setState({ clocks: response })
+      this.setState({ factions: response })
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
 
-  fetchClocks() {
+  fetchFactions() {
     fetch(`/api/v1${this.props.location.pathname}`, {
       credentials: 'same-origin'
     })
@@ -62,30 +62,25 @@ class ClocksIndexContainer extends Component {
     .then(response =>response.json())
     .then(body => {
       this.setState({
-        clocks: body
+        factions: body
       })
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
   componentDidMount() {
-    this.fetchClocks()
+    this.fetchFactions()
   }
 
   render() {
-    let clockShowTiles = this.state.clocks.map(clock => {
+    let factionShowTiles = this.state.factions.map(faction => {
       return (
         <li>
-          <ClockShowTile
-          key = {clock.id}
-          id = {clock.id}
-          name = {clock.name}
-          description = {clock.description}
-          ticks = {clock.ticks}
-          segments = {clock.segments}
-          factionName = {clock.faction_name}
-          npcName = {clock.npc_name}
-          factionId = {clock.faction_id}
-          npcId = {clock.npc_id}
+          <FactionShowTile
+          key = {faction.id}
+          id = {faction.id}
+          name = {faction.name}
+          description = {faction.description}
+          factionStatus = {faction.faction_status}
           handleClick = {this.handlePlusOrMinusClick}
           />
         </li>
@@ -94,14 +89,14 @@ class ClocksIndexContainer extends Component {
 
     return(
       <div className = "row">
-        <h1 className = "small-2 small-centered columns">Clocks</h1>
+        <h1 className = "small-2 small-centered columns">Factions</h1>
         <ul className = "no-bullet">
-          <Link to={this.props.location.pathname+"/new"} className = "button small-12 small-centered columns">Add a new clock</Link>
-          {clockShowTiles}
+          <Link to={this.props.location.pathname+"/new"} className = "button small-12 small-centered columns">Add a new faction</Link>
+          {factionShowTiles}
           <Link to={"/games/"+this.props.params.id} className = "button small-12 small-centered columns">Back to Game</Link>
         </ul>
       </div>
     )
   }
 }
-export default ClocksIndexContainer
+export default FactionsIndexContainer

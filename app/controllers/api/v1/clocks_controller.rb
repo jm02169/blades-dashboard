@@ -5,8 +5,11 @@ class Api::V1::ClocksController < ApplicationController
   def index
     game = Game.find(params[:game_id])
     clocks = game.clocks.order(:id)
-
-    render json: clocks, include: [:comments]
+    if game.user_id == current_user_id
+      render json: clocks, include: [:comments]
+    else
+      render json: {}, status: :unauthorized
+    end
   end
 
   def show
@@ -14,16 +17,21 @@ class Api::V1::ClocksController < ApplicationController
     if clock.game.user_id == current_user_id
       render json: clock, include: [:comments]
     else
-      redirect_to "../public/401.html", status: :unauthorized
+      render json: {}, status: :unauthorized
     end
   end
 
   def create
-    clock = Clock.new(clock_params)
-    if clock.save
-      render json: { clock: clock }
+    game = Game.find(params[:game_id])
+    if game.user_id == current_user_id
+      clock = Clock.new(clock_params)
+      if clock.save
+        render json: { clock: clock }
+      else
+        render json: {error: clock.errors.full_messages}, status: :unprocessable_entity
+      end
     else
-      render json: {error: clock.errors.full_messages}, status: :unprocessable_entity
+      render json: {}, status: :unauthorized
     end
   end
 

@@ -30,4 +30,24 @@ RSpec.describe Api::V1::ClocksController, type: :controller do
 
     end
   end
+  describe "GET#show" do
+    it "should return a the details of a specific clock" do
+      get :show, params: { id: clock.id }
+      returned_json = JSON.parse(response.body)
+
+      expect(response.status).to eq 200
+      expect(response.content_type).to eq("application/json")
+
+      expect(returned_json["id"]).to eq clock.id
+      expect(returned_json["name"]).to eq clock.name
+      expect(returned_json["description"]).to eq clock.description
+      expect(returned_json["segments"]).to eq clock.segments
+      expect(returned_json["ticks"]).to eq clock.ticks
+      expect(returned_json["game"]).to eq nil
+      expect(returned_json["faction_name"]).to eq clock.faction.name
+      expect(returned_json["faction_id"]).to eq clock.faction.id
+      expect(returned_json["npc_name"]).to eq nil
+
+    end
+  end
 end

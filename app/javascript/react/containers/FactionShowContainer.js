@@ -1,19 +1,17 @@
 import React, { Component } from 'react'
 import { Link, browserHistory } from 'react-router'
-import ClockShowTile from '../components/ClockShowTile'
+import FactionShowTile from '../components/FactionShowTile'
 
-class ClockShowContainer extends Component {
+class FactionShowContainer extends Component {
   constructor(props) {
     super(props);
     this.state={
       id: '',
       name: '',
       description: '',
-      ticks: '',
-      segments: '',
-      npc_name: '',
-      faction_name: '',
-      game_id: ''
+      factionStatus: '',
+      game_id: '',
+      npcs: []
     }
     this.handleUpClick = this.handleUpClick.bind(this)
     this.handleDownClick = this.handleDownClick.bind(this)
@@ -21,14 +19,14 @@ class ClockShowContainer extends Component {
 
   handleUpClick(event) {
     event.preventDefault()
-    let newTicks;
+    let newStatus;
     let formPayload;
-    if (this.state.ticks == this.state.segments) {
-      newTicks = this.state.ticks
+    if (this.state.factionStatus == 3) {
+      newStatus = this.state.factionStatus
     } else {
-      newTicks = this.state.ticks + 1
+      newStatus = this.state.factionStatus + 1
     }
-    formPayload = {ticks: newTicks}
+    formPayload = {faction_status: newStatus}
     fetch(`/api/v1/${this.props.location.pathname}`, {
       credentials: 'same-origin',
       method: 'PUT',
@@ -38,11 +36,6 @@ class ClockShowContainer extends Component {
     .then(response => {
       if (response.ok) {
         return response;
-      } else if (response.status === 401) {
-        let errorMessage = `${response.status} (${response.statusText})`
-        browserHistory.push('/')
-        let error = new Error(errorMessage);
-        throw(error);
       } else {
         let errorMessage = `${response.status} (${response.statusText})`
         let error = new Error(errorMessage);
@@ -51,20 +44,20 @@ class ClockShowContainer extends Component {
     })
     .then(response => response.json())
     .then(response => {
-      this.setState({ ticks: newTicks })
+      this.setState({ factionStatus: newStatus })
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
   handleDownClick(event) {
     event.preventDefault()
-    let newTicks;
+    let newStatus;
     let formPayload;
-    if (this.state.ticks == 0) {
-      newTicks = this.state.ticks
+    if (this.state.factionStatus == -3) {
+      newStatus = this.state.factionStatus
     } else {
-      newTicks = this.state.ticks - 1
+      newStatus = this.state.factionStatus - 1
     }
-    formPayload = {ticks: newTicks}
+    formPayload = {faction_status: newStatus}
     fetch(`/api/v1/${this.props.location.pathname}`, {
       credentials: 'same-origin',
       method: 'PUT',
@@ -87,7 +80,7 @@ class ClockShowContainer extends Component {
     })
     .then(response => response.json())
     .then(response => {
-      this.setState({ ticks: newTicks })
+      this.setState({ factionStatus: newStatus })
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
@@ -116,43 +109,46 @@ class ClockShowContainer extends Component {
         id: body.id,
         name: body.name,
         description: body.description,
-        ticks: body.ticks,
-        segments: body.segments,
-        npc_name: body.npc_name,
-        faction_name: body.faction_name,
+        factionStatus: body.faction_status,
+        npcs: body.npcs,
         game_id: body.game_id
       })
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
   render() {
-    let npcOrFactionClass = "hidden"
-    if (this.state.npc_name != null || this.state.faction_name != null) {
-      npcOrFactionClass = "panel small-10 small-centered columns"
-    }
+    let npcList = this.state.npcs.map(npc => {
+      return(
+        <li>{npc.name}</li>
+      )
+    })
+
     return(
       <div className = "row">
-        <h1 className = "small-8 small-centered columns">{this.state.name}</h1>
+        <h1 className = "small-4 small-centered columns">{this.state.name}</h1>
         <div className = "small-2 small-centered columns">
           <span>
             <a href="#" onClick = {this.handleUpClick}>
               <i className="fas fa-plus fa-lg"></i>
             </a>
-            <span>{this.state.ticks}/{this.state.segments}</span>
+            <span> {this.state.factionStatus} </span>
             <a href="#" onClick = {this.handleDownClick}>
               <i className="fas fa-minus fa-lg"></i>
             </a>
           </span>
         </div>
         <div className = "panel small-10 small-centered columns"> <p>{this.state.description}</p></div>
-        <div className = {npcOrFactionClass}>{this.state.npc_name}{this.state.faction_name}</div>
+        <ul className = "panel small-10 small-centered columns"> <h4>NPCs:</h4>
+        <hr/>
+          {npcList}
+        </ul>
         <ul className = "button-group small-10 small-centered columns even-2">
-          <li><Link to={"/clocks/"+this.state.id+"/edit"} className = "button">Edit Clock Details</Link></li>
-          <li><Link to={"/games/"+this.state.game_id+"/clocks"} className = "button">Back to Clock List</Link></li>
+          <li><Link to={"/factions/"+this.state.id+"/edit"} className = "button">Edit Faction Details</Link></li>
+          <li><Link to={"/games/"+this.state.game_id+"/factions"} className = "button">Back to Faction List</Link></li>
         </ul>
       </div>
     )
   }
 }
 
-export default ClockShowContainer
+export default FactionShowContainer
