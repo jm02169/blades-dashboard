@@ -1,11 +1,11 @@
-import ClockTile from '../../../../app/javascript/react/components/ClockTile.js'
+import CommentTile from '../../../../app/javascript/react/components/CommentTile.js'
 
-describe('ClockTile', () => {
+describe('CommentTile', () => {
   let wrapper;
 
   beforeEach(() => {
     wrapper = mount(
-      <ClockTile
+      <CommentTile
       key = '1'
       id = '1'
       />
@@ -17,6 +17,6 @@ describe('ClockTile', () => {
   })
 
   it('should have expected content in h3 tag', () => {
-    expect(wrapper.find('h3').text()).toBe('Clocks')
+    expect(wrapper.find('h3').text()).toBe('Comments')
   })
 })

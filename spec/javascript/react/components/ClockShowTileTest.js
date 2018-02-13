@@ -28,6 +28,4 @@ describe('ClockShowTile', () => {
   it('should have expected content in span tag', () => {
     expect(wrapper.find('span').text()).toBe('Clock Name The Bloodletters 7/8')
   })
-
-
 })
