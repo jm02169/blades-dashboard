@@ -8,6 +8,10 @@ import ClockShowContainer from './containers/ClockShowContainer'
 import NewClockFormContainer from './containers/NewClockFormContainer'
 import ClockEditContainer from './containers/ClockEditContainer'
 import NewGameFormContainer from './containers/NewGameFormContainer'
+import FactionsIndexContainer from './containers/FactionsIndexContainer'
+import FactionShowContainer from './containers/FactionShowContainer'
+import NewFactionFormContainer from './containers/NewFactionFormContainer'
+import FactionEditContainer from './containers/FactionEditContainer'
 
 const App = (props) => {
 
@@ -29,6 +33,10 @@ const App = (props) => {
           <Route path='/clocks/:id' component={(props) => <ClockShowContainer currentUserId={currentUserId} {...props} />} />
           <Route path='/games/:id/clocks/new' component={(props) => <NewClockFormContainer currentUserId={currentUserId} {...props} />} />
           <Route path='/clocks/:id/edit' component={(props) => <ClockEditContainer currentUserId={currentUserId} {...props} />} />
+          <Route path='/games/:id/factions' component={(props) => <FactionsIndexContainer currentUserId={currentUserId} {...props} />} />
+          <Route path='/games/:id/factions/new' component={(props) => <NewFactionFormContainer currentUserId={currentUserId} {...props} />} />
+          <Route path='/factions/:id' component={(props) => <FactionShowContainer currentUserId={currentUserId} {...props} />} />
+          <Route path='/factions/:id/edit' component={(props) => <FactionEditContainer currentUserId={currentUserId} {...props} />} />
         </Route>
     </Router>
     )

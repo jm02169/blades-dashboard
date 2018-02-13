@@ -85,6 +85,11 @@ class NewClockFormContainer extends Component {
       .then(response => {
         if (response.ok) {
           return response;
+        } else if (response.status === 401) {
+          let errorMessage = `${response.status} (${response.statusText})`
+          browserHistory.push('/')
+          let error = new Error(errorMessage);
+          throw(error);
         } else {
           let errorMessage = `${response.status} (${response.statusText})`,
             error = new Error(errorMessage);

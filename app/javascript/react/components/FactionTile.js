@@ -5,6 +5,7 @@ const FactionTile = (props) => {
   return(
     <div className = "panel">
       <h3>Factions</h3>
+      <Link to={"/games/"+props.id+"/factions"} className="button">View Factions</Link>
     </div>
   )
 }
