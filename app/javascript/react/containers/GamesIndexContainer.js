@@ -11,7 +11,9 @@ class GamesIndexContainer extends Component {
   }
 
   componentDidMount() {
-    fetch("/api/v1/games")
+    fetch("/api/v1/games", {
+      credentials: "same-origin"
+    })
     .then(response => {
       if (response.ok) {
         return response;
@@ -23,7 +25,8 @@ class GamesIndexContainer extends Component {
     })
     .then(response =>response.json())
     .then(body => {
-      this.setState( {games: body} )
+      console.log(body)
+      this.setState({ games: body})
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`));
   }

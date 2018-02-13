@@ -1,5 +1,6 @@
 class Api::V1::ClocksController < ApplicationController
   skip_before_action :verify_authenticity_token, only: [:create, :update]
+  before_action :authenticate_user!
 
   def index
     game = Game.find(params[:game_id])
