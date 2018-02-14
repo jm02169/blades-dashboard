@@ -24,3 +24,16 @@
 body {
   background-color: #aaaaaa
 }
+
+
+span {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+ span {
+   align-items: center;
+ }
+ .fa-5x {
+   padding: 5px;
+ }

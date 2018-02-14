@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Link, browserHistory } from 'react-router'
 import ClockShowTile from '../components/ClockShowTile'
+import { Chart } from 'react-google-charts'
 
 class ClockShowContainer extends Component {
   constructor(props) {
@@ -130,19 +131,39 @@ class ClockShowContainer extends Component {
     if (this.state.npc_name != null || this.state.faction_name != null) {
       npcOrFactionClass = "panel small-10 small-centered columns"
     }
+    let unticked = this.state.segments - this.state.ticks
+    let data = [["ticks", "segments"],["ticked", this.state.ticks], ["unticked", unticked]]
+    let options = {
+      chartArea: {width: "100%", height: "100%"},
+      legend: "none",
+      backgroundColor: "#f2f2f2",
+      enableInteractivity: false,
+      slices: [{color: "black"}, {color: "white"}],
+      pieSliceText: "none"
+    }
+    let clock =
+      <Chart
+      chartType = "PieChart"
+      data = {data}
+      options = {options}
+      width="200px"
+      height="200px"
+      />
     return(
       <div className = "row">
         <h1 className = "small-8 small-centered columns">{this.state.name}</h1>
-        <div className = "small-2 small-centered columns">
+        <hr/>
+        <div className = "small-8 small-centered columns">
           <span>
             <a href="#" onClick = {this.handleUpClick}>
-              <i className="fas fa-plus fa-lg"></i>
+              <i className="fas fa-plus fa-5x"></i>
             </a>
-            <span>{this.state.ticks}/{this.state.segments}</span>
+            {clock}
             <a href="#" onClick = {this.handleDownClick}>
-              <i className="fas fa-minus fa-lg"></i>
+              <i className="fas fa-minus fa-5x"></i>
             </a>
           </span>
+          <span> {this.state.ticks}/{this.state.segments} </span>
         </div>
         <div className = "panel small-10 small-centered columns"> <p>{this.state.description}</p></div>
         <div className = {npcOrFactionClass}>{this.state.npc_name}{this.state.faction_name}</div>

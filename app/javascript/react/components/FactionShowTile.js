@@ -27,13 +27,15 @@ const FactionShowTile = (props) => {
       <span className = 'row'>
       <Link to={"/factions/"+props.id} className="small-6 columns">{props.name}</Link>
         <div className = "small-2 columns">
-          <a href="#" onClick={handleUpClick}>
-          <i className="fas fa-plus"></i>
-          </a>
-           <span> {props.factionStatus} </span>
-          <a href="#" onClick = {handleDownClick}>
-          <i className="fas fa-minus"></i>
-          </a>
+          <span>
+            <a href="#" onClick={handleUpClick}>
+              <i className="fas fa-plus"></i>
+            </a>
+             <span> {'\u00A0'}{props.factionStatus}{'\u00A0'} </span>
+            <a href="#" onClick = {handleDownClick}>
+              <i className="fas fa-minus"></i>
+            </a>
+          </span>
         </div>
       </span>
     </div>
