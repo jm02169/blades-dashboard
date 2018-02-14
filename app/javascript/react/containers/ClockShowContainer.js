@@ -153,7 +153,7 @@ class ClockShowContainer extends Component {
       <div className = "row">
         <h1 className = "small-8 small-centered columns">{this.state.name}</h1>
         <hr/>
-        <div className = "small-8 small-centered columns">
+        <div className = "small-10 small-centered columns panel">
           <span>
             <a href="#" onClick = {this.handleUpClick}>
               <i className="fas fa-plus fa-5x"></i>

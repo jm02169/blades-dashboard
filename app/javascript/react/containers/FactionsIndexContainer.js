@@ -89,12 +89,14 @@ class FactionsIndexContainer extends Component {
 
     return(
       <div className = "row">
-        <h1 className = "small-2 small-centered columns">Factions</h1>
-        <ul className = "no-bullet">
-          <Link to={this.props.location.pathname+"/new"} className = "button small-12 small-centered columns">Add a new faction</Link>
-          {factionShowTiles}
-          <Link to={"/games/"+this.props.params.id} className = "button small-12 small-centered columns">Back to Game</Link>
-        </ul>
+        <h1 className = "small-12 small-centered columns">Factions</h1>
+        <div className = "small-10 small-centered columns">
+          <ul className = "no-bullet">
+            <Link to={this.props.location.pathname+"/new"} className = "button small-12 small-centered columns">Add a new faction</Link>
+            {factionShowTiles}
+            <Link to={"/games/"+this.props.params.id} className = "button small-12 small-centered columns">Back to Game</Link>
+          </ul>
+        </div>
       </div>
     )
   }
