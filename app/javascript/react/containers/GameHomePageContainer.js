@@ -43,18 +43,22 @@ class GameHomePageContainer extends Component {
 
     return(
       <div className = "row">
-        <h1 className = "small-4 small-centered columns">{this.state.game.name}</h1>
+        <h1>{this.state.game.name}</h1>
         <div className = "small-block-grid-3">
           <li><ClockTile
+            key = "1"
             id = {this.state.game.id}
           /></li>
           <li><FactionTile
+            key = "2"
             id = {this.state.game.id}
           /></li>
           <li><NpcTile
+            key = "3"
             id = {this.state.game.id}
           /></li>
           <li><CommentTile
+            key = "4"
             id = {this.state.game.id}
           /></li>
         </div>
