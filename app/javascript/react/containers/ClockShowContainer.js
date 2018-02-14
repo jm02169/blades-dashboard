@@ -152,12 +152,13 @@ class ClockShowContainer extends Component {
     return(
       <div className = "row">
         <h1 className = "small-8 small-centered columns">{this.state.name}</h1>
+        <hr/>
         <div className = "small-8 small-centered columns">
           <span>
             <a href="#" onClick = {this.handleUpClick}>
               <i className="fas fa-plus fa-5x"></i>
             </a>
-            <span className="clock">{clock}</span>
+            {clock}
             <a href="#" onClick = {this.handleDownClick}>
               <i className="fas fa-minus fa-5x"></i>
             </a>

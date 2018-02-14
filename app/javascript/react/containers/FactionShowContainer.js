@@ -126,15 +126,18 @@ class FactionShowContainer extends Component {
     return(
       <div className = "row">
         <h1 className = "small-4 small-centered columns">{this.state.name}</h1>
-        <div className = "small-2 small-centered columns">
-          <span>
-            <a href="#" onClick = {this.handleUpClick}>
-              <i className="fas fa-plus fa-lg"></i>
-            </a>
-            <span> {this.state.factionStatus} </span>
-            <a href="#" onClick = {this.handleDownClick}>
-              <i className="fas fa-minus fa-lg"></i>
-            </a>
+        <div className = "small-10 small-centered columns panel">
+          <span className = "row">
+          <h4 className = "small-5 columns" >Faction Status: </h4>
+            <span className = "small-5 columns">
+              <a href="#" onClick = {this.handleUpClick}>
+                <i className="fas fa-plus fa-2x"></i>
+              </a>
+              <span><h3> {'\u00A0'}{this.state.factionStatus}{'\u00A0'}</h3> </span>
+              <a href="#" onClick = {this.handleDownClick}>
+                <i className="fas fa-minus fa-2x"></i>
+              </a>
+            </span>
           </span>
         </div>
         <div className = "panel small-10 small-centered columns"> <p>{this.state.description}</p></div>

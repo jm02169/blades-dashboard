@@ -57,9 +57,9 @@ const ClockShowTile = (props) => {
         <div className = "small-4 columns"> {name} </div>
         <span className = "small-2 columns">
           <a href="#" onClick={handleUpClick}>
-            <i className="fas fa-plus"></i>
+            <i className="fas fa-plus"> </i>
           </a>
-          <span> {props.ticks}/{props.segments} </span>
+          <span>{'\u00A0'}{props.ticks}/{props.segments}{'\u00A0'}</span>
           <a href="#" onClick = {handleDownClick}>
             <i className="fas fa-minus"></i>
           </a>
