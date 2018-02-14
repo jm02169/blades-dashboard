@@ -24,3 +24,10 @@
 body {
   background-color: #aaaaaa
 }
+
+
+span {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
