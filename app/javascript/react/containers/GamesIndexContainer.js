@@ -46,12 +46,11 @@ class GamesIndexContainer extends Component {
     return(
       <div className = "row">
         <h1 className = "small-4 small-centered columns">Your games</h1>
+        <hr/>
         <div className = "small-block-grid-3">
           {gameTiles}
-          <li><div className = "panel">
-            <h2>Add New Game</h2>
-            <Link to="/games/new" className = "button">Add new game</Link>
-          </div></li>
+          <hr/>
+          <Link to="/games/new" className = "button small-12 columns">Add new game</Link>
         </div>
       </div>
     )
