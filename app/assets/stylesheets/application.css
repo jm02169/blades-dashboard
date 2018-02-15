@@ -118,3 +118,7 @@ button {
 .game-tile {
   min-height: 280px;
 }
+
+.underlined {
+  text-decoration: underline;
+}

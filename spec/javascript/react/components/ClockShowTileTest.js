@@ -20,7 +20,6 @@ describe('ClockShowTile', () => {
     )
   })
 
-
   it('should have a span tag', () => {
     expect(wrapper.find('span').length).toEqual(3)
   })

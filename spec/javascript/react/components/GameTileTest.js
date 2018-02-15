@@ -12,7 +12,6 @@ describe('GameTile', () => {
     )
   })
 
-
   it('should have an h2 tag', () => {
     expect(wrapper.find('h2').length).toEqual(1)
   })

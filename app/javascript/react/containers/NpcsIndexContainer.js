@@ -45,12 +45,13 @@ class NpcsIndexContainer extends Component {
           key = {npc.id}
           id = {npc.id}
           name = {npc.name}
-          faction = {npc.faction_name}
+          factionName = {npc.faction_name}
+          factionId = {npc.faction_id}
+          gameId = {npc.game_id}
           />
         </li>
       )
     })
-
     return(
       <div className = "row">
         <h1 className = "small-12 small-centered columns">NPCs</h1>

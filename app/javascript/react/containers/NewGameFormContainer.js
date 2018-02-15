@@ -77,7 +77,6 @@ class NewGameFormContainer extends Component {
         return <li>{error}</li>
       })
     }
-
     return(
       <div className= "row">
         <div className= {errorClass}>

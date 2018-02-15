@@ -42,19 +42,22 @@ const ClockShowTile = (props) => {
     />
 
     let name;
+    let nameLink;
     if (props.npcName) {
       name = props.npcName
+      nameLink = `/npcs/${props.npcId}`
     } else if (props.factionName) {
       name = props.factionName
+      nameLink = `/factions/${props.factionId}`
     } else {
       name = "N/A"
+      nameLink = `/games/${props.gameId}`
     }
   return(
     <div className = "panel">
       <span className = 'row'>
-      <Link to={"/clocks/"+props.id} className="small-4 columns">{props.name}</Link>
-
-        <div className = "small-4 columns"> {name} </div>
+        <Link to={"/clocks/"+props.id} className="small-5 columns"><h4>{props.name}</h4></Link>
+        <Link to={nameLink} className = "small-3 columns"><h4> {name} </h4></Link>
         <span className = "small-2 columns">
           <a href="#" onClick={handleUpClick}>
             <i className="fas fa-plus"> </i>

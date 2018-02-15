@@ -9,7 +9,7 @@ class NpcEditContainer extends Component {
     this.state = {
       name: '',
       description: '',
-      factionId: null,
+      factionId: '',
       factions: [],
       errors: [],
       gameId: ''
@@ -30,7 +30,6 @@ class NpcEditContainer extends Component {
     if (event.target.value.startsWith("fac")) {
       this.setState({
         factionId: parseInt(event.target.value.substr(4)),
-        npcId: null
       });
     }
   }
@@ -144,7 +143,6 @@ class NpcEditContainer extends Component {
         />
       )
     })
-
     return(
       <div className= "row">
         <div className= {errorClass}>
