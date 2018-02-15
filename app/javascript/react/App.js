@@ -12,6 +12,10 @@ import FactionsIndexContainer from './containers/FactionsIndexContainer'
 import FactionShowContainer from './containers/FactionShowContainer'
 import NewFactionFormContainer from './containers/NewFactionFormContainer'
 import FactionEditContainer from './containers/FactionEditContainer'
+import NpcsIndexContainer from './containers/NpcsIndexContainer'
+import NpcShowContainer from './containers/NpcShowContainer'
+import NewNpcFormContainer from './containers/NewNpcFormContainer'
+import NpcEditContainer from './containers/NpcEditContainer'
 
 const App = (props) => {
 
@@ -37,8 +41,11 @@ const App = (props) => {
           <Route path='/games/:id/factions/new' component={(props) => <NewFactionFormContainer currentUserId={currentUserId} {...props} />} />
           <Route path='/factions/:id' component={(props) => <FactionShowContainer currentUserId={currentUserId} {...props} />} />
           <Route path='/factions/:id/edit' component={(props) => <FactionEditContainer currentUserId={currentUserId} {...props} />} />
-          <Route path='/games/:id/npcs' component={(props) => <GameHomePageContainer currentUserId={currentUserId} {...props} />} />
+          <Route path='/games/:id/npcs' component={(props) => <NpcsIndexContainer currentUserId={currentUserId} {...props} />} />
+          <Route path='/games/:id/npcs/new' component={(props) => <NewNpcFormContainer currentUserId={currentUserId} {...props} />} />
           <Route path='/games/:id/comments' component={(props) => <GameHomePageContainer currentUserId={currentUserId} {...props} />} />
+          <Route path='/npcs/:id' component={(props) => <NpcShowContainer currentUserId={currentUserId} {...props} />} />
+          <Route path='/npcs/:id/edit' component={(props) => <NpcEditContainer currentUserId={currentUserId} {...props} />} />
         </Route>
     </Router>
     )

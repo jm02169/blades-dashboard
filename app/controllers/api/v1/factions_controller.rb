@@ -37,11 +37,15 @@ class Api::V1::FactionsController < ApplicationController
   def update
     faction = Faction.find(params[:id])
     game = faction.game
-    factions = game.factions.order(:id)
-    if faction.update(faction_params)
-      render json: factions
+    if game.id == current_user_id
+      factions = game.factions.order(:id)
+      if faction.update(faction_params)
+        render json: factions
+      else
+        render json: {error: game.errors.full_messages}, status: :unprocessable_entity
+      end
     else
-      render json: {error: game.errors.full_messages}, status: :unprocessable_entity
+      render json: {}, status: :unauthorized
     end
   end
 
