@@ -10,14 +10,20 @@ Rails.application.routes.draw do
   end
   resources :clocks, only: [:show, :edit]
   resources :factions, only: [:show, :edit]
+  resources :npcs, only: [:show, :edit]
+  resources :comments, only: [:index]
   namespace :api do
     namespace :v1 do
       resources :games, only: [:index, :show, :create] do
         resources :clocks, only: [:index, :show, :new, :create, :update]
         resources :factions, only: [:index, :show, :new, :create, :update]
+        resources :npcs, only: [:index, :show, :new, :create, :update]
+        resources :comments, only: [:index, :show, :new, :create, :update]
       end
       resources :clocks, only: [:show, :update]
       resources :factions, only: [:show, :update]
+      resources :npcs, only: [:show, :update]
+      resources :comments, only: [:show, :update]
     end
   end
 end

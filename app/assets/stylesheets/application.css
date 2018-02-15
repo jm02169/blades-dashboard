@@ -92,6 +92,15 @@ button {
 .faction-name:hover{
   border: 1px inset black;
 }
+.npc-name {
+  font-size: 1.75em;
+  border: 1px outset grey;
+  text-align: center;
+}
+
+.npc-name:hover{
+  border: 1px inset black;
+}
 
 .faction-status {
   font-size: 1.5em;
@@ -103,6 +112,7 @@ button {
 
 .panel {
   border: 2px outset lightgrey;
+  margin: 10px 0px 10px 0px;
 }
 
 .game-tile {

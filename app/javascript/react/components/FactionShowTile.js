@@ -39,8 +39,6 @@ const FactionShowTile = (props) => {
     panelColor = "panel"
   }
 
-
-
   return(
     <div className = {panelColor}>
       <span className = 'row'>
