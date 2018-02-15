@@ -37,6 +37,8 @@ const App = (props) => {
           <Route path='/games/:id/factions/new' component={(props) => <NewFactionFormContainer currentUserId={currentUserId} {...props} />} />
           <Route path='/factions/:id' component={(props) => <FactionShowContainer currentUserId={currentUserId} {...props} />} />
           <Route path='/factions/:id/edit' component={(props) => <FactionEditContainer currentUserId={currentUserId} {...props} />} />
+          <Route path='/games/:id/npcs' component={(props) => <GameHomePageContainer currentUserId={currentUserId} {...props} />} />
+          <Route path='/games/:id/comments' component={(props) => <GameHomePageContainer currentUserId={currentUserId} {...props} />} />
         </Route>
     </Router>
     )

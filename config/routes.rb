@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   resources :games, only: [:index, :show, :new] do
     resources :clocks, only: [:index, :show, :edit]
     resources :factions, only: [:index, :show, :edit]
+    resources :npcs, only: [:index, :show]
+    resources :comments, only: [:index]
   end
   resources :clocks, only: [:show, :edit]
   resources :factions, only: [:show, :edit]
