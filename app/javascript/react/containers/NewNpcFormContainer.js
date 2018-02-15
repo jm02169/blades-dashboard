@@ -9,7 +9,7 @@ class NewNpcFormContainer extends Component {
     this.state = {
       name: '',
       description: '',
-      factionId: null,
+      factionId: '',
       factions: [],
       errors: []
     }
@@ -123,8 +123,6 @@ class NewNpcFormContainer extends Component {
         />
       )
     })
-
-
     return(
       <div className= "row">
         <div className= {errorClass}>

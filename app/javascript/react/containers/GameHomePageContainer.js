@@ -40,7 +40,6 @@ class GameHomePageContainer extends Component {
   }
 
   render() {
-
     return(
       <div className = "row">
         <h1>{this.state.game.name}</h1>

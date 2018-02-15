@@ -119,7 +119,7 @@ class FactionShowContainer extends Component {
   render() {
     let npcList = this.state.npcs.map(npc => {
       return(
-        <li>{npc.name}</li>
+        <li><Link to={"/npcs/"+npc.id}><h4 className = "underlined">{npc.name}</h4></Link></li>
       )
     })
 

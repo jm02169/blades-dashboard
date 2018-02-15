@@ -14,7 +14,6 @@ class NewFactionFormContainer extends Component {
     this.handleNameChange = this.handleNameChange.bind(this);
     this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
     this.handleStatusChange = this.handleStatusChange.bind(this);
-
   }
 
   handleNameChange(event) {

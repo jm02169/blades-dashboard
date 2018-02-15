@@ -86,6 +86,7 @@ class ClocksIndexContainer extends Component {
           npcName = {clock.npc_name}
           factionId = {clock.faction_id}
           npcId = {clock.npc_id}
+          gameId = {clock.game_id}
           handleClick = {this.handlePlusOrMinusClick}
           />
         </li>

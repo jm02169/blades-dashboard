@@ -14,7 +14,6 @@ describe('ListItem', () => {
     )
   })
 
-
   it('should have an option tag', () => {
     expect(wrapper.find('option').length).toEqual(1)
   })
