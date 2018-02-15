@@ -44,6 +44,7 @@ class GameHomePageContainer extends Component {
     return(
       <div className = "row">
         <h1>{this.state.game.name}</h1>
+        <hr/>
         <div className = "small-block-grid-3">
           <li><ClockTile
             key = "1"
@@ -62,6 +63,7 @@ class GameHomePageContainer extends Component {
             id = {this.state.game.id}
           /></li>
         </div>
+        <hr/>
         <Link to="/games" className = "button small-12 small-centered columns">Back to Games List</Link>
       </div>
     )

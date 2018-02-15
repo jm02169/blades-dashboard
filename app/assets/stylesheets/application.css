@@ -15,7 +15,6 @@
  *= require foundation_and_overrides
 
  */
-
 .clock-name {
   font-size: 1.25em;
   font-weight: bolder;
@@ -47,8 +46,8 @@ span {
 }
 
 .fa-5x {
- padding: 5px;
- color: #E65400;
+  padding: 5px;
+  color: #E65400;
 }
 
 a {
@@ -100,4 +99,12 @@ button {
 
 .centered {
   margin: 0 auto;
+}
+
+.panel {
+  border: 2px outset lightgrey;
+}
+
+.game-tile {
+  min-height: 280px;
 }
