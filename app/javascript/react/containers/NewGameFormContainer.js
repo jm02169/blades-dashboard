@@ -7,12 +7,13 @@ class NewGameFormContainer extends Component {
     this.state = {
       name: '',
       description: '',
+      defaultFactions: 1,
       errors: []
     }
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
     this.handleNameChange = this.handleNameChange.bind(this);
     this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
-
+    this.handleCheckboxChange = this.handleCheckboxChange.bind(this);
   }
 
   handleNameChange(event) {
@@ -21,13 +22,21 @@ class NewGameFormContainer extends Component {
   handleDescriptionChange(event) {
     this.setState({ description: event.target.value });
   }
-
+  handleCheckboxChange(event) {
+    if (this.state.defaultFactions === 1) {
+      this.setState({ defaultFactions: 0})
+    }
+    if (this.state.defaultFactions === 0) {
+      this.setState({ defaultFactions: 1})
+    }
+  }
   handleFormSubmit(event) {
     event.preventDefault()
     let formPayload = {
       name: this.state.name,
       description: this.state.description,
-      user_id: this.props.currentUserId
+      user_id: this.props.currentUserId,
+      default_factions: this.state.defaultFactions
     }
     let errors = []
     if (formPayload.name == null || formPayload.name == '') {
@@ -82,6 +91,9 @@ class NewGameFormContainer extends Component {
             </label>
             <label>Description
               <input type="text" value={this.state.description} onChange = {this.handleDescriptionChange}/>
+            </label>
+            <label>Use default factions?
+              <input type="checkbox" defaultChecked = "true" onChange = {this.handleCheckboxChange}/>
             </label>
             <div className="small-8 columns small-centered small-block-grid-2">
               <li><button type="submit" value="Submit" >Submit</button></li>
