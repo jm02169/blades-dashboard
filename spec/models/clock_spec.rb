@@ -40,5 +40,4 @@ RSpec.describe Clock, type: :model do
     clock_11 = Clock.new(name: "Testing Clocks", description: "A clock to test clocks", game: game, segments: 13, ticks: 1)
     expect(clock_11).to_not be_valid
   end
-
 end

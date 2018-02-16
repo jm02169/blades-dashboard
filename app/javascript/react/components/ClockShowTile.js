@@ -56,8 +56,8 @@ const ClockShowTile = (props) => {
   return(
     <div className = "panel">
       <span className = 'row'>
-        <Link to={"/clocks/"+props.id} className="small-5 columns"><h4>{props.name}</h4></Link>
-        <Link to={nameLink} className = "small-3 columns"><h4> {name} </h4></Link>
+        <Link to={"/clocks/"+props.id} className="small-5 columns"><h4 className = "underlined">{props.name}</h4></Link>
+        <Link to={nameLink} className = "small-3 columns"><h4 className = "underlined"> {name} </h4></Link>
         <span className = "small-2 columns">
           <a href="#" onClick={handleUpClick}>
             <i className="fas fa-plus"> </i>
