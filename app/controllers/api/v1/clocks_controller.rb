@@ -38,7 +38,7 @@ class Api::V1::ClocksController < ApplicationController
   def update
     clock = Clock.find(params[:id])
     game = clock.game
-    if game.id == current_user_id
+    if game.user.id == current_user_id
       clocks = game.clocks.order(:id)
       if clock.update(clock_params)
         render json: clocks, each_serializer: ClockSerializer

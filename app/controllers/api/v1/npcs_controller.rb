@@ -38,7 +38,7 @@ class Api::V1::NpcsController < ApplicationController
     npc = Npc.find(params[:id])
     game = npc.game
     npcs = game.npcs.order(:id)
-    if game.id == current_user_id
+    if game.user.id == current_user_id
       if npc.update(npc_params)
         render json: npcs
       else

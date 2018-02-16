@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Link, browserHistory } from 'react-router'
 import ClockShowTile from '../components/ClockShowTile'
+import CommentShowTile from '../components/CommentShowTile'
 import { Chart } from 'react-google-charts'
 
 class ClockShowContainer extends Component {
@@ -14,7 +15,8 @@ class ClockShowContainer extends Component {
       segments: '',
       npc_name: '',
       faction_name: '',
-      game_id: ''
+      game_id: '',
+      comments: []
     }
     this.handleUpClick = this.handleUpClick.bind(this)
     this.handleDownClick = this.handleDownClick.bind(this)
@@ -66,7 +68,7 @@ class ClockShowContainer extends Component {
       newTicks = this.state.ticks - 1
     }
     formPayload = {ticks: newTicks}
-    fetch(`/api/v1/${this.props.location.pathname}`, {
+    fetch(`/api/v1${this.props.location.pathname}`, {
       credentials: 'same-origin',
       method: 'PUT',
       body: JSON.stringify(formPayload),
@@ -94,7 +96,7 @@ class ClockShowContainer extends Component {
   }
 
   componentDidMount() {
-    fetch(`/api/v1/${this.props.location.pathname}`, {
+    fetch(`/api/v1${this.props.location.pathname}`, {
       credentials: 'same-origin'
     })
     .then(response => {
@@ -121,12 +123,21 @@ class ClockShowContainer extends Component {
         segments: body.segments,
         npc_name: body.npc_name,
         faction_name: body.faction_name,
-        game_id: body.game_id
+        game_id: body.game_id,
+        comments: body.comments
       })
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
   render() {
+    let commentTiles = this.state.comments.map(comment => {
+      return(
+        <CommentShowTile
+          key = {comment.id}
+          commentBody = {comment.body}
+        />
+      )
+    })
     let npcOrFactionClass = "hidden"
     if (this.state.npc_name != null || this.state.faction_name != null) {
       npcOrFactionClass = "panel small-10 small-centered columns"
@@ -171,6 +182,12 @@ class ClockShowContainer extends Component {
           <li><Link to={"/clocks/"+this.state.id+"/edit"} className = "button">Edit Clock Details</Link></li>
           <li><Link to={"/games/"+this.state.game_id+"/clocks"} className = "button">Back to Clock List</Link></li>
         </ul>
+        <hr/>
+        <h1>Notes:</h1>
+        <ul className = "no-bullet small-10 small-centered columns">
+          {commentTiles}
+        </ul>
+        <hr/>
       </div>
     )
   }
