@@ -1,5 +1,5 @@
 class NpcSerializer < ActiveModel::Serializer
-  attributes :id, :name, :description, :faction_name, :faction_id, :game_id
+  attributes :id, :name, :description, :faction_name, :faction_id, :game_id, :comments
 
   belongs_to :game
   belongs_to :faction, optional: true

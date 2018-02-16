@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Link, browserHistory } from 'react-router'
 import FactionShowTile from '../components/FactionShowTile'
+import CommentShowTile from '../components/CommentShowTile'
 
 class FactionShowContainer extends Component {
   constructor(props) {
@@ -11,7 +12,8 @@ class FactionShowContainer extends Component {
       description: '',
       factionStatus: '',
       game_id: '',
-      npcs: []
+      npcs: [],
+      comments: []
     }
     this.handleUpClick = this.handleUpClick.bind(this)
     this.handleDownClick = this.handleDownClick.bind(this)
@@ -111,12 +113,21 @@ class FactionShowContainer extends Component {
         description: body.description,
         factionStatus: body.faction_status,
         npcs: body.npcs,
-        game_id: body.game_id
+        game_id: body.game_id,
+        comments: body.comments
       })
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
   render() {
+    let commentTiles = this.state.comments.map(comment => {
+      return(
+        <CommentShowTile
+          key = {comment.id}
+          commentBody = {comment.body}
+        />
+      )
+    })
     let npcList = this.state.npcs.map(npc => {
       return(
         <li><Link to={"/npcs/"+npc.id}><h4 className = "underlined">{npc.name}</h4></Link></li>
@@ -149,6 +160,12 @@ class FactionShowContainer extends Component {
           <li><Link to={"/factions/"+this.state.id+"/edit"} className = "button">Edit Faction Details</Link></li>
           <li><Link to={"/games/"+this.state.game_id+"/factions"} className = "button">Back to Faction List</Link></li>
         </ul>
+        <hr/>
+        <h1>Notes:</h1>
+        <ul className = "no-bullet small-10 small-centered columns">
+          {commentTiles}
+        </ul>
+        <hr/>
       </div>
     )
   }
