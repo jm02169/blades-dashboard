@@ -37,7 +37,7 @@ class Api::V1::FactionsController < ApplicationController
   def update
     faction = Faction.find(params[:id])
     game = faction.game
-    if game.id == current_user_id
+    if game.user.id == current_user_id
       factions = game.factions.order(:id)
       if faction.update(faction_params)
         render json: factions
