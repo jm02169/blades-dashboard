@@ -16,7 +16,4 @@ class Game < ApplicationRecord
       DefaultFactionSeeder.new.seed_for(self)
     end
   end
-  # def viewable_by?(user)
-  #   game.user == user
-  # end
 end

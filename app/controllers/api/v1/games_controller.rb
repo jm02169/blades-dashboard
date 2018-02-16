@@ -19,10 +19,14 @@ class Api::V1::GamesController < ApplicationController
 
   def create
     game = Game.create(game_params)
-    if game.save
-      render json: { game: game }
+    if game.user_id == current_user_id
+      if game.save
+        render json: { game: game }
+      else
+        render json: {error: game.errors.full_messages}, status: :unprocessable_entity
+      end
     else
-      render json: {error: game.errors.full_messages}, status: :unprocessable_entity
+      render json: {}, status: :unauthorized
     end
   end
 

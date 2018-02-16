@@ -25,6 +25,5 @@ RSpec.describe Game, type: :model do
     expect(game_1.factions[0].name).to eq('The Billhooks')
     game_2 = Game.create!(name: "First game", description: "Tuesday night game at Pete's", user: user, default_factions: 0)
     expect(game_2.factions[0]).to be(nil)
-
   end
 end

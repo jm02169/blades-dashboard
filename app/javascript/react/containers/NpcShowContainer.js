@@ -48,7 +48,6 @@ class NpcShowContainer extends Component {
   render() {
     let factionName;
     let factionLink;
-
     if (this.state.factionId) {
       factionName = this.state.factionName
       factionLink = `/factions/${this.state.factionId}`
