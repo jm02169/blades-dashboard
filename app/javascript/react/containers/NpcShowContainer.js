@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Link, browserHistory } from 'react-router'
+import CommentShowTile from '../components/CommentShowTile'
 
 class NpcShowContainer extends Component {
   constructor(props) {
@@ -10,7 +11,8 @@ class NpcShowContainer extends Component {
       description: '',
       factionName: '',
       factionId: '',
-      gameId: ''
+      gameId: '',
+      comments: []
     }
   }
 
@@ -40,12 +42,21 @@ class NpcShowContainer extends Component {
         description: body.description,
         factionId: body.faction_id,
         factionName: body.faction_name,
-        gameId: body.game_id
+        gameId: body.game_id,
+        comments: body.comments
       })
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
   render() {
+    let commentTiles = this.state.comments.map(comment => {
+      return(
+        <CommentShowTile
+          key = {comment.id}
+          commentBody = {comment.body}
+        />
+      )
+    })
     let factionName;
     let factionLink;
     if (this.state.factionId) {
@@ -65,6 +76,12 @@ class NpcShowContainer extends Component {
           <li><Link to={"/npcs/"+this.state.id+"/edit"} className = "button">Edit NPC Details</Link></li>
           <li><Link to={"/games/"+this.state.gameId+"/npcs"} className = "button">Back to NPC List</Link></li>
         </ul>
+        <hr/>
+        <h1>Notes:</h1>
+        <ul className = "no-bullet small-10 small-centered columns">
+          {commentTiles}
+        </ul>
+        <hr/>
       </div>
     )
   }

@@ -30,3 +30,16 @@ if !Clock.first
     Clock.create!(name: "General clock", description: "This is a general clock not attached to an NPC or faction", game: faction.game, segments: Faker::Number.between(8,12), ticks: Faker::Number.between(0,7))
   end
 end
+
+if !Comment.first
+  10.times do
+    faction = Faction.order("RANDOM()").first
+    npc = Npc.order("RANDOM()").first
+    game = Game.order("RANDOM()").first
+    clock = Clock.order("RANDOM()").first
+    Comment.create!(body: Faker::Hipster.sentences(2).join(' '), game_id: game.id)
+    Comment.create!(body: Faker::Hipster.sentences(2).join(' '), faction_id: faction.id)
+    Comment.create!(body: Faker::Hipster.sentences(2).join(' '), npc_id: npc.id)
+    Comment.create!(body: Faker::Hipster.sentences(2).join(' '), clock_id: clock.id)
+  end
+end
