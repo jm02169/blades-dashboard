@@ -59,9 +59,12 @@ class GameHomePageContainer extends Component {
       })
       .then(response => response.json())
       .then(response => {
+        let newComments = this.state.comments
+        newComments.push(response)
+        console.log(newComments)
         this.setState({
           commentBody: '',
-          comments: response
+          comments: newComments
         })
       })
       .catch(error => console.error(`Error in fetch: ${error.message}`));
