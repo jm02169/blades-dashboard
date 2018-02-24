@@ -17,7 +17,7 @@ class Api::V1::CommentsController < ApplicationController
     if game.user_id == current_user_id
       comment = Comment.new(comment_params)
       if comment.save
-        render json: { comment: comment }
+        render json: game.comments
       else
         render json: {error: comment.errors.full_messages}, status: :unprocessable_entity
       end
