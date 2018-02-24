@@ -8,15 +8,16 @@ describe('CommentTile', () => {
       <CommentTile
       key = '1'
       id = '1'
+      body = "This is a comment"
       />
     )
   })
 
-  it('should have an h3 tag', () => {
-    expect(wrapper.find('h3').length).toEqual(1)
+  it('should have a p tag', () => {
+    expect(wrapper.find('p').length).toEqual(1)
   })
 
-  it('should have expected content in h3 tag', () => {
-    expect(wrapper.find('h3').text()).toBe('Comments')
+  it('should have expected content in p tag', () => {
+    expect(wrapper.find('p').text()).toBe('This is a comment')
   })
 })
