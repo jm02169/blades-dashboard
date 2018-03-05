@@ -13,7 +13,19 @@ class Api::V1::CommentsController < ApplicationController
   end
 
   def create
-    game = Game.find(params[:game_id])
+    if params[:game_id]
+      game = Game.find(params[:game_id])
+    elsif params[:faction_id]
+      faction = Faction.find(params[:faction_id])
+      game = faction.game
+    elsif params[:npc_id]
+      npc = Npc.find(params[:npc_id])
+      game = npc.game
+    elsif params[:clock_id]
+      clock = Clock.find(params[:clock_id])
+      game = clock.game
+    end
+
     if game.user_id == current_user_id
       comment = Comment.new(comment_params)
       if comment.save
