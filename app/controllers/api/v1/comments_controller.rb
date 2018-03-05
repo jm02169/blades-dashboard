@@ -3,41 +3,12 @@ class Api::V1::CommentsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    if params[:game_id]
-      game = Game.find(params[:game_id])
-      comments = game.comments.order(:id)
-      if game.user_id == current_user_id
-        render json: comments
-      else
-        render json: {}, status: :unauthorized
-      end
-    elsif params[:faction_id]
-      faction = Faction.find(params[:faction_id])
-      game = faction.game
-      comments = faction.comments
-      if game.user_id == current_user_id
-        render json: comments
-      else
-        render json: {}, status: :unauthorized
-      end
-    elsif params[:npc_id]
-      npc = Npc.find(params[:npc_id])
-      game = npc.game
-      comments = npc.comments
-      if game.user_id == current_user_id
-        render json: comments
-      else
-        render json: {}, status: :unauthorized
-      end
-    elsif params[:clock_id]
-      clock = Clock.find(params[:clock_id])
-      game = clock.game
-      comments = clock.comments
-      if game.user_id == current_user_id
-        render json: comments
-      else
-        render json: {}, status: :unauthorized
-      end
+    game = Game.find(params[:game_id])
+    comments = game.comments.order(:id)
+    if game.user_id == current_user_id
+      render json: comments
+    else
+      render json: {}, status: :unauthorized
     end
   end
 
@@ -54,7 +25,7 @@ class Api::V1::CommentsController < ApplicationController
       clock = Clock.find(params[:clock_id])
       game = clock.game
     end
-    
+
     if game.user_id == current_user_id
       comment = Comment.new(comment_params)
       if comment.save
