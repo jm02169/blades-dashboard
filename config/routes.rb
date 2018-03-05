@@ -19,9 +19,15 @@ Rails.application.routes.draw do
         resources :npcs, only: [:index, :show, :new, :create, :update]
         resources :comments, only: [:index, :show, :new, :create, :update]
       end
-      resources :clocks, only: [:show, :update]
-      resources :factions, only: [:show, :update]
-      resources :npcs, only: [:show, :update]
+      resources :clocks, only: [:show, :update] do
+        resources :comments, only: [:index, :show, :new, :create, :update]
+      end
+      resources :factions, only: [:show, :update] do
+        resources :comments, only: [:index, :show, :new, :create, :update]
+      end
+      resources :npcs, only: [:show, :update] do
+        resources :comments, only: [:index, :show, :new, :create, :update]
+      end
       resources :comments, only: [:show, :update]
     end
   end
